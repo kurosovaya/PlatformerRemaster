@@ -4,13 +4,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace PlatformerRemaster
 {
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private Player player;
+
         Texture2D background_1;
-        Texture2D character_img;
 
 
         public Game1()
@@ -18,7 +19,7 @@ namespace PlatformerRemaster
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = false;
-            _graphics.IsFullScreen = true;
+            // _graphics.IsFullScreen = true;
         }
 
         protected override void Initialize()
@@ -38,7 +39,8 @@ namespace PlatformerRemaster
             // TODO: use this.Content to load your game content here
 
             background_1 = Content.Load<Texture2D>("trees_palms_jungle_127762_3840x2096");
-            character_img = Content.Load<Texture2D>("cover-256");
+            player = new Player(new Vector2(0, 120), Services);
+            player.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)
@@ -47,6 +49,21 @@ namespace PlatformerRemaster
                 Exit();
 
             // TODO: Add your update logic here
+
+            var kstate = Keyboard.GetState();
+
+            float speed = 10000f;
+            if (kstate.IsKeyDown(Keys.Up))
+                player.position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (kstate.IsKeyDown(Keys.Down))
+                player.position.Y += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (kstate.IsKeyDown(Keys.Left))
+                player.position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (kstate.IsKeyDown(Keys.Right))
+                player.position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             base.Update(gameTime);
         }
@@ -59,7 +76,7 @@ namespace PlatformerRemaster
 
             _spriteBatch.Begin();
             _spriteBatch.Draw(background_1, new Rectangle(0, 0, 1920, 1080), Color.White);
-            _spriteBatch.Draw(character_img, new Rectangle(0, 0, 64, 64), Color.White);
+            player.Draw(_spriteBatch);
             _spriteBatch.End();
 
 
