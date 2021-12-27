@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "3DDVjRcihYQQRQhawCTOiErch95EC0WdzjPerpW9gEOKoQpFBp7KG3i8JSPfQNkpGZmUOrNeYkesZQl3os/9iw==",
+  "success": true,
+  "projectFilePath": "D:\\!Projects\\VisualStudioProjects\\PlatformerRemaster\\PlatformerRemaster.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nonic\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\nonic\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\nonic\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512",
+    "C:\\Users\\nonic\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+  ],
+  "logs": []
+}

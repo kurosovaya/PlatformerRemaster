@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"D:/!Projects/VisualStudioProjects/PlatformerRemaster/Content/cover-256.png","D:/!Projects/VisualStudioProjects/PlatformerRemaster/Content/bin/DesktopGL/Content/cover-256.xnb","TextureProcessor","Texture2DContent",3668,262229,0.2958262
+"D:/!Projects/VisualStudioProjects/PlatformerRemaster/Content/trees_palms_jungle_127762_3840x2096.jpg","D:/!Projects/VisualStudioProjects/PlatformerRemaster/Content/bin/DesktopGL/Content/trees_palms_jungle_127762_3840x2096.xnb","TextureProcessor","Texture2DContent",1279391,8298805,0.62168
+"D:/!Projects/VisualStudioProjects/PlatformerRemaster/Content/wp3263282.jpg","D:/!Projects/VisualStudioProjects/PlatformerRemaster/Content/bin/DesktopGL/Content/wp3263282.xnb","TextureProcessor","Texture2DContent",375725,8294485,0.6234406

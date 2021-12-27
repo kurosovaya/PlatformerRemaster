@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>D:/!Projects/VisualStudioProjects/PlatformerRemaster/Content/cover-256.png</File>
+    <File>D:/!Projects/VisualStudioProjects/PlatformerRemaster/Content/trees_palms_jungle_127762_3840x2096.jpg</File>
+    <File>D:/!Projects/VisualStudioProjects/PlatformerRemaster/Content/wp3263282.jpg</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
