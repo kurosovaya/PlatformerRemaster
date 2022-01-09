@@ -55,9 +55,10 @@ namespace PlatformerRemaster
 
 
             player.LoadContent();
-            foreach (Platform platform in platforms){
+            foreach (Platform platform in platforms)
+            {
                 platform.LoadContent(Services);
-            }            
+            }
         }
 
         protected override void Update(GameTime gameTime)

@@ -26,7 +26,7 @@ namespace PlatformerRemaster
         {
             get { return position; }
             set { position = value; }
-        }        
+        }
         public Vector2 position;
 
         public float X { get => position.X; set => position.X = value; }
@@ -45,7 +45,7 @@ namespace PlatformerRemaster
             Position = position;
             this.serviceProvider = serviceProvider;
             jumpCount = jumpCountMax;
-        }       
+        }
 
         public void LoadContent()
         {
@@ -98,18 +98,18 @@ namespace PlatformerRemaster
 
         public void Collision(Platform platform)
         {
-            
+
             if (X + Width > platform.X && X < platform.X + platform.Width)
             {
-                //above
-                if (Y + Height >= platform.Y && Y + Height <= platform.Y + platform.Height / 2)
+                //player above
+                if (Y + Height >= platform.Y && Y + Height <= platform.Y + platform.Height && velocity.Y > 0)
                 {
                     Y = platform.Y - Height;
                     velocity.Y = 0;
                     OnGround();
-                }            
-                //below
-                if (Y <= platform.Y + platform.Height && Y >= platform.Y + platform.Height / 2)
+                }
+                //player below
+                if (Y <= platform.Y + platform.Height && Y >= platform.Y && velocity.Y < 0)
                 {
                     Y = platform.Y + platform.Height;
                     velocity.Y = 0;
@@ -119,16 +119,17 @@ namespace PlatformerRemaster
             if (Y + Height > platform.Y && Y < platform.Y + platform.Height)
             {
 
-                //left
-                if (X + Width >= platform.X && X + Width <= platform.X + platform.Width / 2) {
-                    X = platform.X - Width - 1;
+                //player left
+                if (X + Width >= platform.X && X + Width <= platform.X + platform.Width && velocity.X > 0)
+                {
+                    X = platform.X - Width;
                     velocity.X = 0;
                 }
 
-                //right
-                if (X <= platform.X + platform.Width && X >= platform.X + platform.Width / 2)
+                //player right
+                if (X <= platform.X + platform.Width && X >= platform.X && velocity.X < 0)
                 {
-                    X = platform.X + platform.Width + 1;
+                    X = platform.X + platform.Width;
                     velocity.X = 0;
                 }
             }
@@ -168,7 +169,7 @@ namespace PlatformerRemaster
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(idleTexture, new Rectangle((int) Position.X, (int) Position.Y, 64, 64), Color.White);
+            spriteBatch.Draw(idleTexture, new Rectangle((int)Position.X, (int)Position.Y, 64, 64), Color.White);
         }
     }
 }
