@@ -25,6 +25,18 @@
 /processorParam:TextureFormat=Color
 /build:cover-256.png
 
+#begin RockTItle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:RockTItle.png
+
 #begin trees_palms_jungle_127762_3840x2096.jpg
 /importer:TextureImporter
 /processor:TextureProcessor

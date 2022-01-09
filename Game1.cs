@@ -10,6 +10,7 @@ namespace PlatformerRemaster
         private SpriteBatch _spriteBatch;
 
         private Player player;
+        private Platform[] platforms;
 
         Texture2D background_1;
 
@@ -19,7 +20,7 @@ namespace PlatformerRemaster
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = false;
-            // _graphics.IsFullScreen = true;
+            //_graphics.IsFullScreen = true;
         }
 
         protected override void Initialize()
@@ -40,7 +41,23 @@ namespace PlatformerRemaster
 
             background_1 = Content.Load<Texture2D>("trees_palms_jungle_127762_3840x2096");
             player = new Player(new Vector2(0, 120), Services);
+            platforms = new Platform[] {new Platform(new Vector2(1025, 800), 64, 64, "RockTItle"),
+                                        new Platform(new Vector2(1025 - 64, 800), 64, 64, "RockTItle"),
+                                        new Platform(new Vector2(1025 - 64 * 2, 800), 64, 64, "RockTItle"),
+                                        new Platform(new Vector2(1025 - 64 * 3, 800), 64, 64, "RockTItle"),
+                                        new Platform(new Vector2(1025 - 64 * 4, 800), 64, 64, "RockTItle"),
+
+                                        new Platform(new Vector2(1025, 800 - 64 * 1), 64, 64, "RockTItle"),
+                                        new Platform(new Vector2(1025 - 64, 800 - 64 * 2), 64, 64, "RockTItle"),
+                                        new Platform(new Vector2(1025 - 64 * 2, 800 - 64 * 3), 64, 64, "RockTItle"),
+                                        new Platform(new Vector2(1025 - 64 * 3, 800 - 64 * 4), 64, 64, "RockTItle"),
+                                        new Platform(new Vector2(1025 - 64 * 4, 800 - 64 * 5), 64, 64, "RockTItle")};
+
+
             player.LoadContent();
+            foreach (Platform platform in platforms){
+                platform.LoadContent(Services);
+            }            
         }
 
         protected override void Update(GameTime gameTime)
@@ -50,20 +67,12 @@ namespace PlatformerRemaster
 
             // TODO: Add your update logic here
 
-            var kstate = Keyboard.GetState();
-
-            float speed = 10000f;
-            if (kstate.IsKeyDown(Keys.Up))
-                player.position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            if (kstate.IsKeyDown(Keys.Down))
-                player.position.Y += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            if (kstate.IsKeyDown(Keys.Left))
-                player.position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            if (kstate.IsKeyDown(Keys.Right))
-                player.position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            player.Move(gameTime);
+            player.UpdatePosition(gameTime);
+            foreach (Platform platform in platforms)
+            {
+                player.Collision(platform);
+            }
 
             base.Update(gameTime);
         }
@@ -77,6 +86,10 @@ namespace PlatformerRemaster
             _spriteBatch.Begin();
             _spriteBatch.Draw(background_1, new Rectangle(0, 0, 1920, 1080), Color.White);
             player.Draw(_spriteBatch);
+            foreach (Platform platform in platforms)
+            {
+                platform.Draw(_spriteBatch);
+            }
             _spriteBatch.End();
 
 

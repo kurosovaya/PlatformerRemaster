@@ -25,3 +25,4 @@ D:\!Projects\VisualStudioProjects\PlatformerRemaster\bin\Debug\netcoreapp3.1\Con
 D:\!Projects\VisualStudioProjects\PlatformerRemaster\bin\Debug\netcoreapp3.1\Content\cover-256.xnb
 D:\!Projects\VisualStudioProjects\PlatformerRemaster\obj\Debug\netcoreapp3.1\PlatformerRemaster.csproj.AssemblyReference.cache
 D:\!Projects\VisualStudioProjects\PlatformerRemaster\obj\Debug\netcoreapp3.1\PlatformerRemaster.GeneratedMSBuildEditorConfig.editorconfig
+D:\!Projects\VisualStudioProjects\PlatformerRemaster\bin\Debug\netcoreapp3.1\Content\RockTItle.xnb
