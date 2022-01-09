@@ -67,7 +67,7 @@ namespace PlatformerRemaster
 
             // TODO: Add your update logic here
 
-            player.Move(gameTime);
+            player.Move();
             player.UpdatePosition(gameTime);
             foreach (Platform platform in platforms)
             {

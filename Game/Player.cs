@@ -19,7 +19,6 @@ namespace PlatformerRemaster
         private int jumpCount;
         private Vector2 velocity = new Vector2(0, 0);
 
-
         static KeyboardState currentKeyState;
         static KeyboardState previousKeyState;
 
@@ -27,7 +26,7 @@ namespace PlatformerRemaster
         {
             get { return position; }
             set { position = value; }
-        }
+        }        
         public Vector2 position;
 
         public float X { get => position.X; set => position.X = value; }
@@ -59,32 +58,31 @@ namespace PlatformerRemaster
             Position = position;
         }
 
-        public void Move(GameTime gameTime)
+        public void Move()
         {
             previousKeyState = currentKeyState;
             currentKeyState = Keyboard.GetState();
 
             if (currentKeyState.IsKeyDown(Keys.Space) && !previousKeyState.IsKeyDown(Keys.Space))
-                Jump(gameTime);
-
-            if (currentKeyState.IsKeyDown(Keys.S))
-            {
-                position.Y += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
+                Jump();
 
             if (currentKeyState.IsKeyDown(Keys.A))
             {
-                position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                velocity.X = -speed;
             }
 
             if (currentKeyState.IsKeyDown(Keys.D))
             {
-                position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                velocity.X = +speed;
             }
-                
+            if (currentKeyState.IsKeyUp(Keys.A) && previousKeyState.IsKeyDown(Keys.A)
+                || currentKeyState.IsKeyUp(Keys.D) && previousKeyState.IsKeyDown(Keys.D))
+            {
+                velocity.X = 0;
+            }
         }
 
-        public void Jump(GameTime gameTime)
+        public void Jump()
         {
             if (jumpCount <= jumpCountMax)
             {
