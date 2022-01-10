@@ -14,6 +14,8 @@ namespace PlatformerRemaster
 
         Texture2D background_1;
 
+        SpriteFont font;
+
 
         public Game1()
         {
@@ -39,7 +41,7 @@ namespace PlatformerRemaster
 
             // TODO: use this.Content to load your game content here
 
-            background_1 = Content.Load<Texture2D>("trees_palms_jungle_127762_3840x2096");
+            background_1 = Content.Load<Texture2D>("wp3263282");
             player = new Player(new Vector2(0, 120), Services);
             platforms = new Platform[] {new Platform(new Vector2(1025, 800), 64, 64, "RockTItle"),
                                         new Platform(new Vector2(1025 - 64, 800), 64, 64, "RockTItle"),
@@ -48,7 +50,7 @@ namespace PlatformerRemaster
                                         new Platform(new Vector2(1025 - 64 * 4, 800), 64, 64, "RockTItle"),
 
                                         new Platform(new Vector2(1025, 800 - 64 * 1), 64, 64, "RockTItle"),
-                                        new Platform(new Vector2(1025 - 64, 800 - 64 * 2), 64, 64, "RockTItle"),
+                                        //new Platform(new Vector2(1025 - 64, 800 - 64 * 2), 64, 64, "RockTItle"),
                                         new Platform(new Vector2(1025 - 64 * 2, 800 - 64 * 3), 64, 64, "RockTItle"),
                                         new Platform(new Vector2(1025 - 64 * 3, 800 - 64 * 4), 64, 64, "RockTItle"),
                                         new Platform(new Vector2(1025 - 64 * 4, 800 - 64 * 5), 64, 64, "RockTItle")};
@@ -59,6 +61,9 @@ namespace PlatformerRemaster
             {
                 platform.LoadContent(Services);
             }
+
+
+            font = Content.Load<SpriteFont>("myFont");
         }
 
         protected override void Update(GameTime gameTime)
@@ -91,6 +96,11 @@ namespace PlatformerRemaster
             {
                 platform.Draw(_spriteBatch);
             }
+
+            string text = $"X.V: {player.velocity.X} Y.V: {player.velocity.Y}";
+            Vector2 textMiddlePoint = font.MeasureString(text) / 2;
+            _spriteBatch.DrawString(font, text, new Vector2(0, 0),
+                Color.White, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0.5f);
             _spriteBatch.End();
 
 

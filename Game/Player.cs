@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
+using System.Diagnostics;
 
 namespace PlatformerRemaster
 {
@@ -12,15 +13,16 @@ namespace PlatformerRemaster
         private Texture2D idleTexture;
         private IServiceProvider serviceProvider;
 
-        private float gravity = 5000f;
+        private float gravity = 10000f;
         private float maxVelocity = 15000f;
         private float speed = 800f;
         private int jumpCountMax = 6;
         private int jumpCount;
-        private Vector2 velocity = new Vector2(0, 0);
+        public Vector2 velocity = new Vector2(0, 0);
 
         static KeyboardState currentKeyState;
         static KeyboardState previousKeyState;
+
 
         public Vector2 Position
         {
@@ -86,7 +88,7 @@ namespace PlatformerRemaster
         {
             if (jumpCount <= jumpCountMax)
             {
-                velocity.Y = -1750f;
+                velocity.Y = -2000f;
                 jumpCount++;
             }
         }
@@ -97,37 +99,34 @@ namespace PlatformerRemaster
         }
 
         public void Collision(Platform platform)
-        {
-
+        { 
             if (X + Width > platform.X && X < platform.X + platform.Width)
             {
                 //player above
-                if (Y + Height >= platform.Y && Y + Height <= platform.Y + platform.Height && velocity.Y > 0)
+                if (Y + Height > platform.Y && Y + Height < platform.Y + platform.Height && velocity.Y > 0)
                 {
                     Y = platform.Y - Height;
                     velocity.Y = 0;
                     OnGround();
                 }
                 //player below
-                if (Y <= platform.Y + platform.Height && Y >= platform.Y && velocity.Y < 0)
+                if (Y <= platform.Y + platform.Height && Y > platform.Y && velocity.Y < 0)
                 {
                     Y = platform.Y + platform.Height;
-                    velocity.Y = 0;
+                    velocity.Y = 0;                    
                 }
             }
-
             if (Y + Height > platform.Y && Y < platform.Y + platform.Height)
             {
-
                 //player left
-                if (X + Width >= platform.X && X + Width <= platform.X + platform.Width && velocity.X > 0)
+                if (X + Width > platform.X && X < platform.X + platform.Width && velocity.X > 0)
                 {
-                    X = platform.X - Width;
+                    X = platform.X - platform.Width;
                     velocity.X = 0;
                 }
 
                 //player right
-                if (X <= platform.X + platform.Width && X >= platform.X && velocity.X < 0)
+                if (X < platform.X + platform.Width && X > platform.X && velocity.X < 0)
                 {
                     X = platform.X + platform.Width;
                     velocity.X = 0;
@@ -135,6 +134,7 @@ namespace PlatformerRemaster
             }
         }
 
+        // retarded method
         public void UpdatePosition(GameTime gameTime)
         {
             if (position.Y < 1080 - 64)
